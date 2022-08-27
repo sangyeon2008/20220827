@@ -1,0 +1,97 @@
+# 1번 지표	라이언형(R), 튜브형(T)
+# 2번 지표	콘형(C), 프로도형(F)
+# 3번 지표	제이지형(J), 무지형(M)
+# 4번 지표	어피치형(A), 네오형(N)
+
+
+def solution(survey,choices):
+    answer = ''
+    point = [0,-3,-2,-1,0,1,2,3]
+    # survey = {"AN":5,"CF":3,"MJ":2,"RT":7,"NA":5}
+    type = {"RT":0,"CF":0,"JM":0,"AN":0}
+    for i in range(len(survey)):
+        if survey[i] not in type:
+            type[survey[i][::-1]] += -point[choices[i]]
+        else:
+            type[survey[i]] += point[choices[i]]
+    for j in type:
+        if type[j] <= 0:
+            answer += j[0]
+        else:
+            answer += j[1]
+    return answer
+
+
+# Rule1: 무작위 정수 3개를 정답으로 선언한다.(단, 중복은 없도록)
+# Rule2: 매 턴 마다 정수 3개를 입력하고 비교한다.
+# Rule3:
+
+
+
+
+
+#난수 만들기
+#난수 = 랜덤 숫자
+
+import random
+#로또 = 1~45까지 정수 값 중에 6개를 선택해서 맞춘다. 중복 X
+# lotto = []  # 로또 번호를 담아줄 그릇
+#
+# while len (lotto) <= 5:
+#     number = random.randint(1,45)
+#     if number not in lotto:            #randint(X,y) = X부터 y가지의 범위에서
+#         lotto.append(number)                                    # 랜덤한 정수를 불러오겠다.
+# lotto.sort()
+# print()
+#
+# for i in range():
+#     a=int(input())
+
+
+
+answer = []
+
+while len(answer) < 3:
+    number = random.randint(0,9)
+    if number not in answer:
+        answer.append(number)
+print(answer)
+
+cnt = 10
+ball=0
+strike=0
+while True:
+    # 1. 정수 3개를 입력받는다. 입력형태 => 3 1 2  띄어쓰기로 구분지어준다.
+    # 2. 정답하고 입력받은 정수 3개를 비교한다.
+    #    2-1)정수가 포함되어 있는지 확인 =>포함되어 있지 않을 경우 Foul 출력
+    #        2-2) 정수가 포함되어 있었다면:
+                #포함되어있는 개수 만큼 ball의 개수 증가
+    #            포함되어있고 자리도 같을 경우 ball의 개수 줄이고 strike의 개수 증가
+    #             ball:x개 strike:y개출력
+    #   3. answer와 내가 입력한 정수가 완전히 같을 경우 you win 이라고 출력후 게임종료
+
+    #
+
+
+    cnt-= 1
+    a=list(map(int,input().split()))
+
+
+    if a==answer:
+        print("3 strike")
+        strike = 3
+    elif a[0] in answer:
+        print("strike")
+    elif a[1] in answer:
+        print("strike")
+    elif a[2] in answer:
+        print("strike")
+    elif a[0] == answer[1] or answer[2]:
+        print("ball")
+    if cnt ==0:    #시도횐수가 다 소진되면 게임종료
+        print("you lose")
+        print("정답은:",answer)
+        exit()
+    elif strike==3:
+        print("you win")
+        exit()
